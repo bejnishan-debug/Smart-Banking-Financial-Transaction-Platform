@@ -17,7 +17,7 @@ transaction_counter = 1
 # Helper Functions
 # =========================
 
-def require_authorization(func):
+def require_authorization(func): 
     @wraps(func)
     def wrapper(*args, **kwargs):
         code = input("Enter authorization code: ")
@@ -1175,7 +1175,7 @@ class Customer:
         self.__name = name
         self.__email = email
         self.__phone = phone
-
+#__str__() = converts an object into a readable text representation for the user.
     def __str__(self):
         return (
             f"Customer ID: {self.get_customer_id()}\n"
@@ -1191,6 +1191,7 @@ class Customer:
         return self.__name
 
     def get_email(self):
+        
         return self.__email
 
     def get_phone(self):
@@ -1526,16 +1527,12 @@ if __name__ == "__main__":
             if generate_id == "yes":
 
                 if customers:
-                    number = max(
-                        int(
-                            customer.get_customer_id()[1:]
-                        )
-                        for customer in customers
-                    ) + 1
+                    number = max(int(customer.get_customer_id()[1:])for customer in customers) + 1
                 else:
                     number = 1
 
                 while True:
+                    
                     customer_id = (
                         Customer.generate_customer_id(number)
                     )
@@ -1552,13 +1549,9 @@ if __name__ == "__main__":
 
             else:
 
-                customer_id = input(
-                    "Customer ID: "
-                ).strip()
+                customer_id = input("Customer ID: ").strip()
 
-                if not Customer.validate_customer_id(
-                    customer_id
-                ):
+                if not Customer.validate_customer_id(customer_id):
                     print("Invalid Customer ID.")
                     continue
 
